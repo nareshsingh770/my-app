@@ -26,7 +26,6 @@ const Weather = () => {
         const weatherAPIData = async () => {
             try {
                 let url = `https://api.openweathermap.org/data/2.5/weather?q=${selectedCity}&units=metric&appid=2d09fd0d294278c0015aecacf7df42dd`
-
                 const res = await fetch(url);
                 const data = await res.json();
                 // console.log(data)
