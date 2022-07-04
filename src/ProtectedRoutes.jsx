@@ -5,7 +5,8 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 const ProtectedRoutes = () => {
 
-    let isAuth = JSON.parse(localStorage.getItem('isAuth'))
+    // let isAuth = JSON.parse(localStorage.getItem('isAuth'))
+    let isAuth = true
 
 
 

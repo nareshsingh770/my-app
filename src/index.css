@@ -504,3 +504,21 @@ ul.contacts-list li:first-child {
 ul.contacts-list li.active {
   background: #ddd;
 }
+
+@media screen and (max-width:768px) {
+  ul.navbar-nav {
+    flex-direction: row;
+  }
+
+  ul.navbar-nav a.nav-link {
+    font-size: 0.9rem;
+  }
+
+  nav li.nav-item {
+    margin-left: 1rem;
+  }
+
+  nav.navbar {
+    padding: 2px;
+  }
+}
