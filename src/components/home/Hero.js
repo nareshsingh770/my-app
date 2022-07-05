@@ -1,21 +1,20 @@
+import { Box, Container, Typography, Button } from '@mui/material'
 import React, { useContext } from 'react'
-// import Popup from '../../modal/Popup'
 import { ModalOpen } from '../../context/Context'
 
 const Hero = () => {
     const [modalState, setModal] = useContext(ModalOpen)
     return (
-        <>
-            <div className="hero-section">
-                <div className="container">
-                    <div className="text-heading">
-                        <div className="text-1">Hello, My Name is</div>
-                        <div className="text-2">John Doe</div>
-                        <div className="text-3">And I am a <span>Developer</span><span className="cursor">|</span></div>
-                        <button type="button" className="btn btn-danger mt-2" onClick={() => setModal(!modalState)}>Hire me</button>
-                    </div>
+        <><Box className="hero-section">
+            <Container maxWidth="xl">
+                <div className="text-heading">
+                    <Typography variant='h3' className="text-1">Hello, My Name is</Typography>
+                    <Typography variant='h3' className="text-2">John Doe</Typography>
+                    <Typography variant='h3' className="text-3">And I am a <span>Developer</span><span className="cursor">|</span></Typography>
+                    <Button type="button" variant='contained' >Hire me</Button>
                 </div>
-            </div>
+            </Container>
+        </Box>
         </>
     )
 }

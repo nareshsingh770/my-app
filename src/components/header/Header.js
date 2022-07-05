@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import ColorsTheme from './ColorsTheme';
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material'
@@ -6,6 +6,12 @@ import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const Header = (props) => {
+    const pages = { 'Home': '/', 'Projects': '/projects', 'Users': '/users-data', 'Sign Up': '/sign-up' };
+    const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+    const [anchorSideMenu, handleOpenSideMenu] = useState(null)
+    const [anchorMenuUser, handleOpenUserMenu] = useState(null)
+
 
     const applyColorTheme = (e) => {
 
@@ -29,27 +35,8 @@ const Header = (props) => {
     })
     return (
         <>
-            <nav className="navbar navbar-expand-sm bg-danger navbar-dark">
-                <div className="container-fluid justify-content-between">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to='/'>Home</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/projects">Projects</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/users-data">Users</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/sign-up">Create Account</NavLink>
-                        </li>
-                    </ul>
-                    <ColorsTheme changeColor={applyColorTheme} />
-                    <button className='btn btn-outline-warning text-warning logout-btn' onClick={props.userlogout}><i className="fa fa-power-off" aria-hidden="true"></i></button>
-                </div>
-            </nav>
-            <AppBar position="static">
+            <AppBar position="fixed" color="primary" sx={{ height: { lg: '70px' } }}>
+
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -78,11 +65,13 @@ const Header = (props) => {
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
                                 color="inherit"
+                                onClick={(e) => handleOpenSideMenu(e.currentTarget)}
                             >
                                 <MenuIcon />
                             </IconButton>
                             <Menu
                                 id="menu-appbar"
+                                anchorEl={anchorSideMenu}
                                 anchorOrigin={{
                                     vertical: 'bottom',
                                     horizontal: 'left',
@@ -95,8 +84,24 @@ const Header = (props) => {
                                 sx={{
                                     display: { xs: 'block', md: 'none' },
                                 }}
+                                open={Boolean(anchorSideMenu)}
+                                onClose={() => handleOpenSideMenu(null)}
                             >
-                                <MenuItem >
+
+                                {
+                                    Object.entries(pages).map((page) => {
+                                        return (
+                                            <NavLink to={page[1]} onClick={() => handleOpenSideMenu(null)}>
+                                                <Button
+                                                    sx={{ my: 2, mx: 4, color: '#000', display: 'block' }}
+                                                >
+                                                    {page[0]}
+                                                </Button>
+                                            </NavLink>
+                                        )
+                                    })
+                                }
+                                {/* <MenuItem >
                                     <Typography textAlign="center">Home</Typography>
                                 </MenuItem>
                                 <MenuItem >
@@ -104,7 +109,7 @@ const Header = (props) => {
                                 </MenuItem>
                                 <MenuItem >
                                     <Typography textAlign="center">Users</Typography>
-                                </MenuItem>
+                                </MenuItem> */}
                             </Menu>
                         </Box>
                         <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -126,34 +131,34 @@ const Header = (props) => {
                         >
                             LOGO
                         </Typography>
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-
-                            <Button
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                Home
-                            </Button>
-                            <Button
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                Projects
-                            </Button>
-                            <Button
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                Users
-                            </Button>
-
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'space-between', alignItems: 'center', mr: 4 }}>
+                            <Box sx={{ display: 'flex' }}>
+                                {
+                                    Object.entries(pages).map((page) => {
+                                        return (
+                                            <NavLink to={page[1]}>
+                                                <Button
+                                                    sx={{ my: 2, mx: 4, color: 'white', display: 'block' }}
+                                                >
+                                                    {page[0]}
+                                                </Button>
+                                            </NavLink>
+                                        )
+                                    })
+                                }
+                            </Box>
+                            <ColorsTheme changeColor={applyColorTheme} />
                         </Box>
 
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
-                                <IconButton sx={{ p: 0 }}>
+                                <IconButton onClick={(e) => handleOpenUserMenu(e.currentTarget)} sx={{ p: 0 }}>
                                     <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                                 </IconButton>
                             </Tooltip>
                             <Menu
                                 sx={{ mt: '45px' }}
+                                anchorEl={anchorMenuUser}
                                 id="menu-appbar"
                                 anchorOrigin={{
                                     vertical: 'top',
@@ -164,12 +169,14 @@ const Header = (props) => {
                                     vertical: 'top',
                                     horizontal: 'right',
                                 }}
+                                open={Boolean(anchorMenuUser)}
+                                onClose={() => handleOpenUserMenu(null)}
                             >
-                                {/* {settings.map((setting) => (
-                                    <MenuItem key={setting}>
-                                        <Typography textAlign="center"></Typography>
+                                {settings.map((setMenu, index) => (
+                                    <MenuItem key={index} onClick={() => handleOpenUserMenu(null)}>
+                                        <Typography textAlign="center">{setMenu}</Typography>
                                     </MenuItem>
-                                ))} */}
+                                ))}
                             </Menu>
                         </Box>
                     </Toolbar>

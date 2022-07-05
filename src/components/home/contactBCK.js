@@ -1,63 +1,58 @@
-import React from 'react'
-
-import contactDetails from '../../actions/Actions';
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect, useReducer } from 'react'
 
 
-// const reducer = (state, action) => {
-//     switch (action.type) {
-//         case 'TYPE_TEXT':
-//             const { name, value } = action.feild.target;
-//             return {
-//                 ...state, [name]: value
-//             }
-//         case 'REST_ALL':
-//             return {
-//                 name: '', email: '', subject: '', message: ''
-//             }
-//         default: return state;
-//     }
-// }
-// const reducerSub = (state, { type, payload }) => {
-//     switch (type) {
-//         case 'SUB_DATA':
-//             const name = payload.name;
 
-//             return {
-//                 ...state, [name]: payload
-//             }
-//         default: return state;
-//     }
-// }
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'TYPE_TEXT':
+            const { name, value } = action.feild.target;
+            return {
+                ...state, [name]: value
+            }
+        case 'REST_ALL':
+            return {
+                name: '', email: '', subject: '', message: ''
+            }
+        default: return state;
+    }
+}
+const reducerSub = (state, { type, payload }) => {
+    switch (type) {
+        case 'SUB_DATA':
+            const name = payload.name;
+
+            return {
+                ...state, [name]: payload
+            }
+        default: return state;
+    }
+}
 
 
 
 const Contact = () => {
 
-    const typedDetails = useSelector((store) => store.messageInput);
-    const dispatch = useDispatch()
+    const initialData = () => {
+        const list = localStorage.getItem('subscribers');
+        // console.log(list);
+        if (list) {
+            return JSON.parse(list);
+        } else return {}
+    }
+    const [stateTyped, dispatch] = useReducer(reducer, { name: '', email: '', subject: '', message: '' });
+    const [stateSub, dispatchSub] = useReducer(reducerSub, initialData());
 
-    // const initialData = () => {
-    //     const list = localStorage.getItem('subscribers');
-    //     // console.log(list);
-    //     if (list) {
-    //         return JSON.parse(list);
-    //     } else return {}
-    // }
-    // const [stateTyped, dispatch] = useReducer(reducer, { name: '', email: '', subject: '', message: '' });
-    // const [stateSub, dispatchSub] = useReducer(reducerSub, initialData());
+    const submitData = (e) => {
+        e.preventDefault();
 
-    // const submitData = (e) => {
-    //     e.preventDefault();
+        dispatch({ type: 'REST_ALL' })
+        dispatchSub({ type: 'SUB_DATA', payload: stateTyped });
 
-    //     dispatch({ type: 'REST_ALL' })
-    //     dispatchSub({ type: 'SUB_DATA', payload: stateTyped });
+    }
 
-    // }
-
-    // useEffect(() => {
-    //     localStorage.setItem('subscribers', JSON.stringify(stateSub))
-    // }, [stateSub])
+    useEffect(() => {
+        localStorage.setItem('subscribers', JSON.stringify(stateSub))
+    }, [stateSub])
 
     return (
         <>
@@ -98,19 +93,19 @@ const Contact = () => {
 
                                     <div className="first-field d-flex justify-content-between mb-2 mt-2">
                                         <div className="">
-                                            <input type="text" className="form-control" name='name' value={typedDetails.name} placeholder="Name" onChange={(e) => dispatch(contactDetails(e.target))} />
+                                            <input type="text" className="form-control" name='name' value={stateTyped.name} placeholder="Name" onChange={(e) => dispatch({ type: 'TYPE_TEXT', feild: e })} />
                                         </div>
                                         <div className="">
-                                            <input type="email" className="form-control" name='email' value={typedDetails.email} placeholder="Email" onChange={(e) => dispatch(contactDetails(e.target))} />
+                                            <input type="email" className="form-control" name='email' value={stateTyped.email} placeholder="Email" onChange={(e) => dispatch({ type: 'TYPE_TEXT', feild: e })} />
                                         </div>
                                     </div>
                                     <div className="mb-2 mt-2">
-                                        <input type="text" className="form-control" name='subject' value={typedDetails.subject} placeholder="Subject" onChange={(e) => dispatch(contactDetails(e.target))} />
+                                        <input type="text" className="form-control" name='subject' value={stateTyped.subject} placeholder="Subject" onChange={(e) => dispatch({ type: 'TYPE_TEXT', feild: e })} />
                                     </div>
                                     <div className="mb-2 mt-2">
-                                        <textarea className="form-control" rows="3" name='message' value={typedDetails.message} placeholder="Message..." onChange={(e) => dispatch(contactDetails(e.target))}></textarea>
+                                        <textarea className="form-control" rows="3" name='message' value={stateTyped.message} placeholder="Message..." onChange={(e) => dispatch({ type: 'TYPE_TEXT', feild: e })}></textarea>
                                     </div>
-                                    <button className="btn btn-danger" >Send Message</button>
+                                    <button className="btn btn-danger" onClick={submitData}>Send Message</button>
                                 </form>
                                 {/* <div className="details">
                                     <h5></h5>

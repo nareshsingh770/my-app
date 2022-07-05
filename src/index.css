@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  text-decoration: none;
+}
+
 :root {
   --bg-dark: #000;
   --bg-secondary: #161616;
@@ -128,7 +132,8 @@ span.controls {
 }
 
 .text-heading button {
-  font-size: 2rem;
+  font-size: 1.2rem;
+  margin-top: 20px;
 }
 
 .contact .detail-wrapper i {
@@ -202,13 +207,11 @@ div.hero-section {
   background-image: linear-gradient(45deg, #ff7b7b, #b329f9de);
   background-size: cover;
   background-repeat: no-repeat;
-}
-
-.hero-section .container {
-  height: 100vh;
+  height: calc(100vh - 70px);
   top: 50%;
   position: relative;
 }
+
 
 .text-heading {
   position: absolute;
