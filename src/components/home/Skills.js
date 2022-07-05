@@ -1,8 +1,6 @@
-import React, { useContext } from 'react'
-import { ModalOpen } from '../../context/Context'
+import React from 'react'
 
 const Skills = () => {
-    const [modalState, setModal] = useContext(ModalOpen)
     return (
         <>
             <section className="skills container">
@@ -14,7 +12,7 @@ const Skills = () => {
                             consequatur, iusto illum deleniti quidem impedit, quos quaerat quis minima sequi. Cupiditate
                             recusandae laudantium esse, harum animi aspernatur quisquam et delectus ipsum quam alias quaerat?
                             Quasi hic quidem illum. Ad delectus natus aut hic explicabo minus quod.</p>
-                        <button className="btn btn-danger" onClick={() => setModal(!modalState)}>Read More</button>
+                        <button className="btn btn-danger" >Read More</button>
                     </div>
                     <div className="col-lg-6 skill-wrapper d-flex flex-column">
                         <div className="skill">

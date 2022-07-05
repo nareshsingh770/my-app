@@ -204,14 +204,19 @@ section h2 {
 }
 
 div.hero-section {
-  background-image: linear-gradient(45deg, #ff7b7b, #b329f9de);
-  background-size: cover;
-  background-repeat: no-repeat;
   height: calc(100vh - 70px);
   top: 50%;
   position: relative;
 }
 
+.hero-image {
+  width: 50%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  min-width: 250px;
+}
 
 .text-heading {
   position: absolute;

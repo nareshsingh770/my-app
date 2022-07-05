@@ -16,4 +16,17 @@ const messageInput = (state = initialDetail, action) => {
     }
 }
 
+
+const colorThemeApplied = (theme = false, action) => {
+    switch (action.type) {
+        case 'COLOR_MODE_CHANGE':
+            return action.payload
+        default: return theme
+    }
+}
+
+
+
+
 export default messageInput;
+export { colorThemeApplied };

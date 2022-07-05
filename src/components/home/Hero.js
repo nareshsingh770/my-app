@@ -1,20 +1,20 @@
-import { Box, Container, Typography, Button } from '@mui/material'
+import { Box, Container, Typography, Button, Paper } from '@mui/material'
 import React, { useContext } from 'react'
-import { ModalOpen } from '../../context/Context'
+import backgroundImg from '../../Assets/Background.png';
 
 const Hero = () => {
-    const [modalState, setModal] = useContext(ModalOpen)
     return (
-        <><Box className="hero-section">
+        <><Paper className="hero-section" sx={{ boxShadow: 'none' }}>
             <Container maxWidth="xl">
-                <div className="text-heading">
+                <Box className="text-heading">
                     <Typography variant='h3' className="text-1">Hello, My Name is</Typography>
                     <Typography variant='h3' className="text-2">John Doe</Typography>
                     <Typography variant='h3' className="text-3">And I am a <span>Developer</span><span className="cursor">|</span></Typography>
-                    <Button type="button" variant='contained' >Hire me</Button>
-                </div>
+                    <Button type="button" variant='contained' color="primary" >Hire me</Button>
+                </Box>
+                <img src={backgroundImg} className='hero-image' alt='hero-image' />
             </Container>
-        </Box>
+        </Paper>
         </>
     )
 }

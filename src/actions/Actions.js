@@ -4,4 +4,13 @@ const contactDetails = (element) => {
         payload: element
     }
 }
+const themeMode = (mode) => {
+    return {
+        type: 'COLOR_MODE_CHANGE',
+        payload: mode
+    }
+}
+
+
 export default contactDetails;
+export { themeMode };

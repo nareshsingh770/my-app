@@ -4,60 +4,12 @@ import contactDetails from '../../actions/Actions';
 import { useSelector, useDispatch } from 'react-redux'
 
 
-// const reducer = (state, action) => {
-//     switch (action.type) {
-//         case 'TYPE_TEXT':
-//             const { name, value } = action.feild.target;
-//             return {
-//                 ...state, [name]: value
-//             }
-//         case 'REST_ALL':
-//             return {
-//                 name: '', email: '', subject: '', message: ''
-//             }
-//         default: return state;
-//     }
-// }
-// const reducerSub = (state, { type, payload }) => {
-//     switch (type) {
-//         case 'SUB_DATA':
-//             const name = payload.name;
-
-//             return {
-//                 ...state, [name]: payload
-//             }
-//         default: return state;
-//     }
-// }
-
-
 
 const Contact = () => {
 
     const typedDetails = useSelector((store) => store.messageInput);
     const dispatch = useDispatch()
 
-    // const initialData = () => {
-    //     const list = localStorage.getItem('subscribers');
-    //     // console.log(list);
-    //     if (list) {
-    //         return JSON.parse(list);
-    //     } else return {}
-    // }
-    // const [stateTyped, dispatch] = useReducer(reducer, { name: '', email: '', subject: '', message: '' });
-    // const [stateSub, dispatchSub] = useReducer(reducerSub, initialData());
-
-    // const submitData = (e) => {
-    //     e.preventDefault();
-
-    //     dispatch({ type: 'REST_ALL' })
-    //     dispatchSub({ type: 'SUB_DATA', payload: stateTyped });
-
-    // }
-
-    // useEffect(() => {
-    //     localStorage.setItem('subscribers', JSON.stringify(stateSub))
-    // }, [stateSub])
 
     return (
         <>
@@ -112,9 +64,6 @@ const Contact = () => {
                                     </div>
                                     <button className="btn btn-danger" >Send Message</button>
                                 </form>
-                                {/* <div className="details">
-                                    <h5></h5>
-                                </div> */}
                             </div>
                         </div>
                     </div>
