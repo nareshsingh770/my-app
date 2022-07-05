@@ -120,15 +120,15 @@ span.controls {
 }
 
 .text-heading .text-1 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 
 .text-heading .text-2 {
-  font-size: 3rem;
+  font-size: 5rem;
 }
 
 .text-heading .text-3 {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .text-heading button {
@@ -314,10 +314,6 @@ section.myteam .team-wrapper img.team-pic {
   margin: auto;
   background-color: var(--bs-danger);
   padding: 5px;
-}
-
-.first-field div {
-  width: 48%;
 }
 
 .detail-wrapper {

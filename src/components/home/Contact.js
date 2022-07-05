@@ -2,7 +2,10 @@ import React from 'react'
 
 import contactDetails from '../../actions/Actions';
 import { useSelector, useDispatch } from 'react-redux'
-
+import { Container, Paper, Grid, Typography, Stack, TextField } from '@mui/material';
+import Heading, { Para } from '../../styled component';
+import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
+import { Box } from '@mui/system';
 
 
 const Contact = () => {
@@ -13,62 +16,58 @@ const Contact = () => {
 
     return (
         <>
-            <section className="contact text-white">
-                <div className='container'>
-                    <h2 className="text-center mb-5">Contact me</h2>
-                    <div className="contact-wrapper mt-5">
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <h4>Get in Touch</h4>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos harum corporis fuga
-                                    corrupti. Doloribus quis soluta nesciunt veritatis vitae nobis?</p>
-                                <div className="detail-wrapper d-flex align-items-center justify-content-between">
-                                    <span><i className="text-danger fas fa-user"></i></span>
-                                    <div className="details d-flex flex-column">
-                                        <label>Name</label>
-                                        <span>Naresh Singh</span>
-                                    </div>
-                                </div>
-                                <div className="detail-wrapper d-flex align-items-center justify-content-between">
-                                    <span><i className="text-danger fas fa-user"></i></span>
-                                    <div className="details d-flex flex-column">
-                                        <label>Name</label>
-                                        <span>Naresh Singh</span>
-                                    </div>
-                                </div>
-                                <div className="detail-wrapper d-flex align-items-center justify-content-between">
-                                    <span><i className="text-danger fas fa-user"></i></span>
-                                    <div className="details d-flex flex-column">
-                                        <label>Name</label>
-                                        <span>Naresh Singh</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-6">
-                                <h4>Message</h4>
-                                <form>
+            <Paper sx={{ py: 10, boxShadow: 'none' }}>
+                <Container maxWidth='xl'>
+                    <Heading>Contact me</Heading>
+                    <Grid container spacing={20}>
+                        <Grid item lg={6} xs={12}>
+                            <Typography variant='subtitle1' color='primary' sx={{ fontSize: '2rem', fontWeight: 'medium' }} >Get in Touch</Typography>
+                            <Para>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos harum corporis fuga
+                                corrupted. Doloribus quis soluta nesciunt veritatis vitae nobis?</Para>
+                            <Stack direction='row' sx={{ my: 3 }}>
+                                <CottageOutlinedIcon color='primary' sx={{ mx: 4 }} />
+                                <Typography variant='subtitle1'>East Delhi, India</Typography>
+                            </Stack>
+                            <Stack direction='row' sx={{ my: 3 }}>
+                                <CottageOutlinedIcon color='primary' sx={{ mx: 4 }} />
+                                <Typography variant='subtitle1'>East Delhi, India</Typography>
+                            </Stack>
+                            <Stack direction='row' sx={{ my: 3 }}>
+                                <CottageOutlinedIcon color='primary' sx={{ mx: 4 }} />
+                                <Typography variant='subtitle1'>East Delhi, India</Typography>
+                            </Stack>
 
-                                    <div className="first-field d-flex justify-content-between mb-2 mt-2">
-                                        <div className="">
-                                            <input type="text" className="form-control" name='name' value={typedDetails.name} placeholder="Name" onChange={(e) => dispatch(contactDetails(e.target))} />
-                                        </div>
-                                        <div className="">
-                                            <input type="email" className="form-control" name='email' value={typedDetails.email} placeholder="Email" onChange={(e) => dispatch(contactDetails(e.target))} />
-                                        </div>
-                                    </div>
-                                    <div className="mb-2 mt-2">
-                                        <input type="text" className="form-control" name='subject' value={typedDetails.subject} placeholder="Subject" onChange={(e) => dispatch(contactDetails(e.target))} />
-                                    </div>
-                                    <div className="mb-2 mt-2">
-                                        <textarea className="form-control" rows="3" name='message' value={typedDetails.message} placeholder="Message..." onChange={(e) => dispatch(contactDetails(e.target))}></textarea>
-                                    </div>
-                                    <button className="btn btn-danger" >Send Message</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
+
+                        </Grid>
+                        <Grid item lg={6} xs={12}>
+                            <Typography variant='subtitle1' color='primary' sx={{ fontSize: '2rem', fontWeight: 'medium', mb: 2 }} >Message</Typography>
+
+                            <Box component='form'>
+                                <Grid container spacing={2}>
+                                    <Grid item lg={6} xs={12}>
+                                        <TextField sx={{ width: '100%' }} id="outlined-basic" label="Name" variant="outlined" />
+                                    </Grid>
+                                    <Grid item lg={6} xs={12}>
+                                        <TextField sx={{ width: '100%' }} id="outlined-basic" label="Email" variant="outlined" />
+                                    </Grid>
+                                    <Grid item lg={12}>
+                                        <TextField sx={{ width: '100%' }} id="outlined-basic" label="Subject" variant="outlined" />
+                                    </Grid>
+                                    <Grid item lg={12}>
+                                        <TextField sx={{ width: '100%' }} id="outlined-basic" label="Message" variant="outlined" />
+                                    </Grid>
+                                </Grid>
+                            </Box>
+
+
+
+
+                        </Grid>
+                    </Grid>
+
+                </Container>
+            </Paper>
         </>
     )
 }
