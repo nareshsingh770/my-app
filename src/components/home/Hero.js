@@ -1,4 +1,5 @@
 import { Box, Container, Typography, Button, Paper } from '@mui/material'
+import React, { useContext } from 'react'
 import backgroundImg from '../../Assets/Background.png';
 
 const Hero = () => {

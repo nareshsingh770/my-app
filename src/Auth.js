@@ -13,7 +13,7 @@ import Header from './components/header/Header';
 import Projects from './MiniProjects/Projects';
 import Contacts from './contacts/Contacts';
 import { ThemeProvider, createTheme } from '@mui/material';
-import { red } from '@mui/material/colors';
+import { grey, red } from '@mui/material/colors';
 import { useSelector } from 'react-redux';
 
 
