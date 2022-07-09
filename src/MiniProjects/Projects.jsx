@@ -1,19 +1,56 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import project1 from '../Assets/project-1.jpg'
-import project2 from '../Assets/project-2.jpg'
-import project3 from '../Assets/project-3.jpg'
-import project4 from '../Assets/project-4.jpg'
-
+import { Grid, Paper, Typography, Button, Container } from '@mui/material'
+import Heading from '../styled component'
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import projects from './ProjectList';
+import { grey } from '@mui/material/colors'
+import { Link } from 'react-router-dom';
 const Projects = () => {
     return (
         <>
-            <div className='container overflow-auto projects-wrap'>
-                <h3 className='text-center mt-5 mb-3'>Projects Examples</h3>
-                <p className='text-center mb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, ullam quia magnam tenetur
-                    assumenda veritatis vero incidunt nobis voluptatum nihil, laboriosam, pariatur voluptatem ut
+            <Paper sx={{ py: 10, boxShadow: 'none', borderRadius: 0 }}>
+                <Container maxWidth='xl'>
+                    <Heading>Projects Examples</Heading>
+                    <Typography variant='h6'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, ullam quia magnam tenetur
+                        assumenda veritatis vero incidunt nobis voluptatum nihil, laboriosam, pariatur voluptatem ut labore ea blanditiis aut doloremque harum?</Typography>
+                    <Grid container sx={{ mt: 4 }} spacing={4}>
+                        {
+                            projects.map((val, ind) => {
+                                return (
+                                    <Grid key={ind + 1} item xl={4} md={6} xs={12}>
+                                        <Card elevation={5}>
+                                            <CardMedia
+                                                component="img"
+                                                alt="green iguana"
+                                                height="250"
+                                                image={val.screenShot}
+                                            />
+                                            <CardContent sx={{ backgroundColor: (theme) => theme.palette.mode === 'light' && grey[100] }}>
+                                                <Typography gutterBottom variant="h5" component="div">
+                                                    {val.projectName}
+                                                </Typography>
+                                                <Typography variant="subtitle1" color="text.secondary">
+                                                    {val.description}
+                                                </Typography>
+                                            </CardContent>
+                                            <CardActions sx={{ justifyContent: 'flex-end', backgroundColor: (theme) => theme.palette.mode === 'light' && grey[100] }}>
+                                                <Link to={val.url}><Button size="medium">View</Button></Link>
+                                            </CardActions>
+                                        </Card>
+                                    </Grid>
+                                )
+                            })
 
-                    labore ea blanditiis aut doloremque harum?</p>
+                        }
+                    </Grid>
+                </Container>
+            </Paper>
+
+
+            {/* <div className='container overflow-auto projects-wrap'>
+
 
                 <div className='row project-container'>
                     <div className='col-md-4 mb-5'>
@@ -23,7 +60,7 @@ const Projects = () => {
                                     <img src={project1} alt='projects' />
                                 </div>
                                 <div className='title'>
-                                    <h5>Restuarant Menu List</h5>
+                                    <h5></h5>
                                     <p>Categories with Breakfast, Lunch, Dinner as per the applied filter buttons</p>
                                 </div>
                             </div>
@@ -82,7 +119,7 @@ const Projects = () => {
                         </NavLink>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
 
         </>

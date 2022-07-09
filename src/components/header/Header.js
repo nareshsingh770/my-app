@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { styled } from '@mui/material/styles';
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem, Switch, FormControlLabel, FormGroup } from '@mui/material'
@@ -122,9 +122,9 @@ const Header = (props) => {
                             >
 
                                 {
-                                    Object.entries(pages).map((page) => {
+                                    Object.entries(pages).map((page, ind) => {
                                         return (
-                                            <NavLink to={page[1]} onClick={() => handleOpenSideMenu(null)}>
+                                            <NavLink key={ind} to={page[1]} onClick={() => handleOpenSideMenu(null)}>
                                                 <Button
                                                     sx={{ my: 2, mx: 4, color: '#000', display: 'block' }}
                                                 >
@@ -167,9 +167,9 @@ const Header = (props) => {
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'space-between', alignItems: 'center', mr: 4 }}>
                             <Box sx={{ display: 'flex' }}>
                                 {
-                                    Object.entries(pages).map((page) => {
+                                    Object.entries(pages).map((page, ind) => {
                                         return (
-                                            <NavLink to={page[1]}>
+                                            <NavLink key={ind + 1} to={page[1]}>
                                                 <Button
                                                     sx={{ my: 2, mx: 4, color: 'white', display: 'block' }}
                                                 >

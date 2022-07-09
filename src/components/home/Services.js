@@ -1,5 +1,5 @@
 import Heading from '../../styled component'
-import { Grid, Paper, Typography, Button, Container } from '@mui/material'
+import { Grid, Paper, Typography, Container } from '@mui/material'
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import AppSettingsAltIcon from '@mui/icons-material/AppSettingsAlt';
 import CampaignIcon from '@mui/icons-material/Campaign';
@@ -7,7 +7,7 @@ import CampaignIcon from '@mui/icons-material/Campaign';
 const Services = () => {
     return (
         <>
-            <Paper sx={{ py: 10, boxShadow: 'none' }}>
+            <Paper sx={{ py: 10, boxShadow: 'none', borderRadius: 0 }}>
                 <Container maxWidth='xl'>
                     <Heading>My Services</Heading>
                     <Grid container spacing={4}>

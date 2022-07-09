@@ -7,7 +7,7 @@ import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 const About = () => {
     return (
         <>
-            <Paper sx={{ py: 10, boxShadow: 'none' }}>
+            <Paper sx={{ py: 10, boxShadow: 'none', borderRadius: 0 }}>
                 <Container maxWidth='xl'>
                     <Heading>About me</Heading>
                     <Grid container>

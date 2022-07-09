@@ -16,7 +16,7 @@ const Contact = () => {
 
     return (
         <>
-            <Paper sx={{ py: 10, boxShadow: 'none' }}>
+            <Paper sx={{ py: 10, boxShadow: 'none', borderRadius: 0 }}>
                 <Container maxWidth='xl'>
                     <Heading>Contact me</Heading>
                     <Grid container spacing={20}>
@@ -59,9 +59,6 @@ const Contact = () => {
                                     </Grid>
                                 </Grid>
                             </Box>
-
-
-
 
                         </Grid>
                     </Grid>
